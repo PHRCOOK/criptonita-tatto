@@ -1,4 +1,10 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebookF,
+  faTwitter,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
   return (
@@ -24,31 +30,43 @@ export default function Footer() {
           {/* Redes Sociales */}
           <div className="col-lg-4 col-md-12 mb-4">
             <h5 className="text-uppercase">Sígueme</h5>
-            <div className="d-flex justify-content-center">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mx-2 text-primary"
-              >
-                Facebook
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mx-2 text-info"
-              >
-                Twitter
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mx-2 text-danger"
-              >
-                Instagram
-              </a>
+            <div className="mt-3 d-flex justify-content-between">
+              <div className="d-flex flex-column align-items-center">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary mb-2"
+                  aria-label="Facebook"
+                >
+                  <FontAwesomeIcon icon={faFacebookF} size="lg" />
+                </a>
+                <span>Facebook</span>
+              </div>
+              <div className="d-flex flex-column align-items-center">
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-info mb-2"
+                  aria-label="Twitter"
+                >
+                  <FontAwesomeIcon icon={faTwitter} size="lg" />
+                </a>
+                <span>Twitter</span>
+              </div>
+              <div className="d-flex flex-column align-items-center">
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-danger mb-2"
+                  aria-label="Instagram"
+                >
+                  <FontAwesomeIcon icon={faInstagram} size="lg" />
+                </a>
+                <span>Instagram</span>
+              </div>
             </div>
           </div>
         </div>
