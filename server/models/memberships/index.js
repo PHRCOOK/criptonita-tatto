@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../config/db");
+const sequelize = require("../../config-db/config-db");
 
 const Membership = sequelize.define("Membership", {
   name: DataTypes.STRING,

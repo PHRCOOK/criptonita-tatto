@@ -1,8 +1,8 @@
 const express = require("express");
-const sequelize = require("./config/db");
-const fileRoutes = require("./routes/fileRoutes");
-const userRoutes = require("./routes/userRoutes");
-const membershipRoutes = require("./routes/membershipRoutes");
+const sequelize = require("./config-db/config-db.js");
+const fileRoutes = require("./routes/file-route/index.js");
+const userRoutes = require("./routes/user-route/index.js");
+const membershipRoutes = require("./routes/memberships-route/index.js");
 
 const app = express();
 const port = 3000;

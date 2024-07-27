@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../config/db");
+const sequelize = require("../../config-db/config-db");
 
 const File = sequelize.define("File", {
   filename: DataTypes.STRING,
