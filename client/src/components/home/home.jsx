@@ -1,12 +1,11 @@
 import React from "react";
-import Navbar from "../navbar/navbar.jsx"; // Asegúrate de que la ruta sea correcta
-import Footer from "../footer/footer.jsx";
+import logo from "../../../public/image/logo.jpg";
+import "./home.scss";
 
 export default function Home() {
   return (
     <div>
-      <Navbar />
-      <Footer />
+      <img src={logo} alt="Criptonita Tattoo" className="logo2-image" />
     </div>
   );
 }
