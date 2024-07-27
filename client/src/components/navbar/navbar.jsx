@@ -1,10 +1,12 @@
 import React from "react";
+import logo from "../../../public/image/logo.jpg";
+import "./navbar.css";
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <nav className="navbar navbar-expand-lg navbar-light bg-gray shadow-sm">
       <a className="navbar-brand" href="#">
-        Criptonita Tatto
+        <img src={logo} alt="Criptonita Tattoo" className="logo-image" />
       </a>
       <button
         className="navbar-toggler"
@@ -36,7 +38,7 @@ export default function Navbar() {
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#">
-              Contactanos
+              Contáctanos
             </a>
           </li>
           <li className="nav-item">
@@ -45,7 +47,7 @@ export default function Navbar() {
             </a>
           </li>
         </ul>
-        <form className="form-inline ml-auto">
+        <form className="form-inline my-2 my-lg-0 ml-auto">
           <input
             className="form-control mr-sm-2"
             type="search"
