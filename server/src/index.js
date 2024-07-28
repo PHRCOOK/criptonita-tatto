@@ -1,3 +1,6 @@
+// src/index.js
+require("dotenv").config(); // Carga las variables de entorno desde el archivo .env
+
 const express = require("express");
 const app = express();
 const userRoute = require("./routes/UserRoute.js");
@@ -11,11 +14,3 @@ createTableIfNotExists().then(() => {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });
-INSERT INTO usuarios (id, nombre, apellido, email, password)
-VALUES (
-    id:integer,
-    'nombre:character varying',
-    'apellido:character varying',
-    'email:character varying',
-    'password:character varying'
-  );
