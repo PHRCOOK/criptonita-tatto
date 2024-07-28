@@ -1,11 +1,11 @@
 // src/scripts/initDatabase.js
-require("dotenv").config(); // Carga las variables de entorno desde el archivo .env
+require("dotenv").config(); // Load environment variables from .env file
 
 const { Client } = require("pg");
 
 async function createTableIfNotExists() {
   const client = new Client({
-    user: process.env.DB_USER, // Usa las variables de entorno
+    user: process.env.DB_USER,
     host: process.env.DB_HOST,
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
@@ -14,8 +14,9 @@ async function createTableIfNotExists() {
 
   try {
     await client.connect();
-    console.log("Conexión a la base de datos exitosa.");
+    console.log("Connected to the database successfully.");
 
+    // Create usuarios table
     await client.query(`
       CREATE TABLE IF NOT EXISTS usuarios (
         id SERIAL PRIMARY KEY,
@@ -26,10 +27,23 @@ async function createTableIfNotExists() {
       );
     `);
 
-    console.log("Tabla creada o ya existe.");
+    console.log("Usuarios table created or already exists.");
+
+    // Create memberships table
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS memberships (
+        id SERIAL PRIMARY KEY,
+        nombre VARCHAR(255),
+        precio DECIMAL,
+        descripcion TEXT,
+        imagen VARCHAR(255)
+      );
+    `);
+
+    console.log("Memberships table created or already exists.");
   } catch (error) {
     console.error(
-      "Error al conectar con la base de datos o crear la tabla:",
+      "Error connecting to the database or creating the tables:",
       error
     );
   } finally {

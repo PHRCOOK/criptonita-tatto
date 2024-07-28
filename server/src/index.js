@@ -4,10 +4,12 @@ require("dotenv").config(); // Carga las variables de entorno desde el archivo .
 const express = require("express");
 const app = express();
 const userRoute = require("./routes/UserRoute.js");
+const membershipRoute = require("./routes/MembershipRoute.js");
 const createTableIfNotExists = require("./scripts/initDatabase");
 
 app.use(express.json());
 app.use("/api", userRoute);
+app.use("/api", membershipRoute);
 
 // Llamada a la función para crear la tabla si no existe
 createTableIfNotExists().then(() => {
