@@ -1,4 +1,3 @@
-// models/Membership.js
 const pool = require("../config/db");
 
 const createMembership = async (nombre, precio, descripcion, imagen) => {
@@ -16,7 +15,7 @@ const createMembership = async (nombre, precio, descripcion, imagen) => {
 
 const getAllMemberships = async () => {
   try {
-    const result = await pool.query(`SELECT * FROM memberships`);
+    const result = await pool.query("SELECT * FROM memberships");
     return result.rows;
   } catch (error) {
     throw error;
@@ -25,7 +24,7 @@ const getAllMemberships = async () => {
 
 const getMembershipById = async (id) => {
   try {
-    const result = await pool.query(`SELECT * FROM memberships WHERE id = $1`, [
+    const result = await pool.query("SELECT * FROM memberships WHERE id = $1", [
       id,
     ]);
     return result.rows[0];
@@ -36,7 +35,7 @@ const getMembershipById = async (id) => {
 
 const updateMembership = async (id, nombre, precio, descripcion, imagen) => {
   const query = {
-    text: `UPDATE memberships SET nombre = $1, precio = $2, descripcion = $3, imagen = $4 WHERE id = $5 RETURNING *`,
+    text: "UPDATE memberships SET nombre = $1, precio = $2, descripcion = $3, imagen = $4 WHERE id = $5 RETURNING *",
     values: [nombre, precio, descripcion, imagen, id],
   };
   try {
@@ -49,7 +48,7 @@ const updateMembership = async (id, nombre, precio, descripcion, imagen) => {
 
 const deleteMembership = async (id) => {
   try {
-    await pool.query(`DELETE FROM memberships WHERE id = $1`, [id]);
+    await pool.query("DELETE FROM memberships WHERE id = $1", [id]);
   } catch (error) {
     throw error;
   }

@@ -15,7 +15,7 @@ const createVideo = async (descripcion, video, membership_id) => {
 
 const getAllVideos = async () => {
   try {
-    const result = await pool.query(`SELECT * FROM videos`);
+    const result = await pool.query("SELECT * FROM videos");
     return result.rows;
   } catch (error) {
     throw error;
@@ -24,7 +24,7 @@ const getAllVideos = async () => {
 
 const getVideoById = async (id) => {
   try {
-    const result = await pool.query(`SELECT * FROM videos WHERE id = $1`, [id]);
+    const result = await pool.query("SELECT * FROM videos WHERE id = $1", [id]);
     return result.rows[0];
   } catch (error) {
     throw error;
@@ -33,7 +33,7 @@ const getVideoById = async (id) => {
 
 const deleteVideo = async (id) => {
   try {
-    await pool.query(`DELETE FROM videos WHERE id = $1`, [id]);
+    await pool.query("DELETE FROM videos WHERE id = $1", [id]);
   } catch (error) {
     throw error;
   }

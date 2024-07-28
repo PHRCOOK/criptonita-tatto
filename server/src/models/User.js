@@ -1,4 +1,3 @@
-// models/User.js
 const pool = require("../config/db");
 
 const createUser = async (nombre, apellido, email, password, membership_id) => {
@@ -16,7 +15,7 @@ const createUser = async (nombre, apellido, email, password, membership_id) => {
 
 const getAllUsers = async () => {
   try {
-    const result = await pool.query(`SELECT * FROM usuarios`);
+    const result = await pool.query("SELECT * FROM users");
     return result.rows;
   } catch (error) {
     throw error;
@@ -25,9 +24,7 @@ const getAllUsers = async () => {
 
 const getUserById = async (id) => {
   try {
-    const result = await pool.query(`SELECT * FROM usuarios WHERE id = $1`, [
-      id,
-    ]);
+    const result = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
     return result.rows[0];
   } catch (error) {
     throw error;
@@ -36,7 +33,7 @@ const getUserById = async (id) => {
 
 const updateUser = async (id, nombre, apellido, email, password) => {
   const query = {
-    text: `UPDATE usuarios SET nombre = $1, apellido = $2, email = $3, password = $4 WHERE id = $5 RETURNING *`,
+    text: "UPDATE users SET nombre = $1, apellido = $2, email = $3, password = $4 WHERE id = $5 RETURNING *",
     values: [nombre, apellido, email, password, id],
   };
   try {
@@ -49,7 +46,7 @@ const updateUser = async (id, nombre, apellido, email, password) => {
 
 const deleteUser = async (id) => {
   try {
-    await pool.query(`DELETE FROM usuarios WHERE id = $1`, [id]);
+    await pool.query("DELETE FROM users WHERE id = $1", [id]);
   } catch (error) {
     throw error;
   }
