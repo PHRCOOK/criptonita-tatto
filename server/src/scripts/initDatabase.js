@@ -1,5 +1,4 @@
-require("dotenv").config(); // Load environment variables from .env file
-
+require("dotenv").config();
 const { Client } = require("pg");
 
 async function createTableIfNotExists() {
@@ -15,61 +14,59 @@ async function createTableIfNotExists() {
     await client.connect();
     console.log("Connected to the database successfully.");
 
-    // Create usuarios table
-    await client.query(`
-      CREATE TABLE IF NOT EXISTS usuarios (
-        id SERIAL PRIMARY KEY,
-        nombre VARCHAR(255),
-        apellido VARCHAR(255),
-        email VARCHAR(255) UNIQUE,
-        password VARCHAR(255)
-      );
-    `);
-
-    console.log("Usuarios table created or already exists.");
-
-    // Create memberships table
-    await client.query(`
-      CREATE TABLE IF NOT EXISTS memberships (
+    // Create memberships table first
+    await client.query(
+      `CREATE TABLE IF NOT EXISTS memberships (
         id SERIAL PRIMARY KEY,
         nombre VARCHAR(255),
         precio DECIMAL,
         descripcion TEXT,
         imagen VARCHAR(255)
-      );
-    `);
+      );`
+    );
 
-    console.log("Memberships table created or already exists.");
+    // Create users table after memberships
+    await client.query(
+      `CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        nombre VARCHAR(255),
+        apellido VARCHAR(255),
+        email VARCHAR(255) UNIQUE,
+        password VARCHAR(255),
+        membership_id INTEGER,
+        FOREIGN KEY (membership_id) REFERENCES memberships (id)
+      );`
+    );
 
     // Create images table
-    await client.query(`
-      CREATE TABLE IF NOT EXISTS images (
+    await client.query(
+      `CREATE TABLE IF NOT EXISTS images (
         id SERIAL PRIMARY KEY,
         descripcion TEXT,
-        imagen VARCHAR(255)
-      );
-    `);
-
-    console.log("Images table created or already exists.");
+        imagen VARCHAR(255),
+        membership_id INTEGER,
+        FOREIGN KEY (membership_id) REFERENCES memberships (id)
+      );`
+    );
 
     // Create videos table
-    await client.query(`
-      CREATE TABLE IF NOT EXISTS videos (
+    await client.query(
+      `CREATE TABLE IF NOT EXISTS videos (
         id SERIAL PRIMARY KEY,
         descripcion TEXT,
-        video VARCHAR(255)
-      );
-    `);
-
-    console.log("Videos table created or already exists.");
-  } catch (error) {
-    console.error(
-      "Error connecting to the database or creating the tables:",
-      error
+        video VARCHAR(255),
+        membership_id INTEGER,
+        FOREIGN KEY (membership_id) REFERENCES memberships (id)
+      );`
     );
+  } catch (error) {
+    console.error("Error creating tables:", error);
   } finally {
     await client.end();
+    console.log("Disconnected from the database.");
   }
 }
 
-module.exports = createTableIfNotExists;
+module.exports = {
+  createTableIfNotExists,
+};

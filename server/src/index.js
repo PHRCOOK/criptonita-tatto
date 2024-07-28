@@ -7,7 +7,7 @@ const userRoute = require("./routes/UserRoute.js");
 const membershipRoute = require("./routes/MembershipRoute.js");
 const imageRoute = require("./routes/ImageRoute.js");
 const videoRoute = require("./routes/VideoRoute.js");
-const createTableIfNotExists = require("./scripts/initDatabase");
+const { createTableIfNotExists } = require("./scripts/initDatabase");
 
 app.use(express.json());
 app.use("/api", userRoute);

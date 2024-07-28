@@ -15,9 +15,15 @@ const hashPassword = async (password) => {
 
 const createUserController = async (req, res) => {
   try {
-    const { nombre, apellido, email, password } = req.body;
+    const { nombre, apellido, email, password, membership_id } = req.body;
     const hashedPassword = await hashPassword(password);
-    const user = await createUser(nombre, apellido, email, hashedPassword);
+    const user = await createUser(
+      nombre,
+      apellido,
+      email,
+      hashedPassword,
+      membership_id
+    );
     res.status(201).json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });

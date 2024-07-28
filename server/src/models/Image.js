@@ -1,9 +1,9 @@
 const pool = require("../config/db");
 
-const createImage = async (descripcion, imagen) => {
+const createImage = async (descripcion, imagen, membership_id) => {
   const query = {
-    text: `INSERT INTO images (descripcion, imagen) VALUES ($1, $2) RETURNING *`,
-    values: [descripcion, imagen],
+    text: "INSERT INTO images (descripcion, imagen, membership_id) VALUES ($1, $2, $3) RETURNING *",
+    values: [descripcion, imagen, membership_id],
   };
   try {
     const result = await pool.query(query);

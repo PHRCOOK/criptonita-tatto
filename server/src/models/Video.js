@@ -1,9 +1,9 @@
 const pool = require("../config/db");
 
-const createVideo = async (descripcion, video) => {
+const createVideo = async (descripcion, video, membership_id) => {
   const query = {
-    text: `INSERT INTO videos (descripcion, video) VALUES ($1, $2) RETURNING *`,
-    values: [descripcion, video],
+    text: "INSERT INTO videos (descripcion, video, membership_id) VALUES ($1, $2, $3) RETURNING *",
+    values: [descripcion, video, membership_id],
   };
   try {
     const result = await pool.query(query);

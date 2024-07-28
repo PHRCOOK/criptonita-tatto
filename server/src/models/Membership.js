@@ -3,7 +3,7 @@ const pool = require("../config/db");
 
 const createMembership = async (nombre, precio, descripcion, imagen) => {
   const query = {
-    text: `INSERT INTO memberships (nombre, precio, descripcion, imagen) VALUES ($1, $2, $3, $4) RETURNING *`,
+    text: "INSERT INTO memberships (nombre, precio, descripcion, imagen) VALUES ($1, $2, $3, $4) RETURNING *",
     values: [nombre, precio, descripcion, imagen],
   };
   try {

@@ -1,10 +1,10 @@
 // models/User.js
 const pool = require("../config/db");
 
-const createUser = async (nombre, apellido, email, password) => {
+const createUser = async (nombre, apellido, email, password, membership_id) => {
   const query = {
-    text: `INSERT INTO usuarios (nombre, apellido, email, password) VALUES ($1, $2, $3, $4) RETURNING *`,
-    values: [nombre, apellido, email, password],
+    text: "INSERT INTO users (nombre, apellido, email, password, membership_id) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+    values: [nombre, apellido, email, password, membership_id],
   };
   try {
     const result = await pool.query(query);

@@ -7,8 +7,8 @@ const {
 
 const createVideoController = async (req, res) => {
   try {
-    const { descripcion, video } = req.body;
-    const videoEntry = await createVideo(descripcion, video);
+    const { descripcion, video, membership_id } = req.body;
+    const videoEntry = await createVideo(descripcion, video, membership_id);
     res.status(201).json(videoEntry);
   } catch (error) {
     res.status(500).json({ message: error.message });

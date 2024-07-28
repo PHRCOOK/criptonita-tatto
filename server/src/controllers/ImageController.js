@@ -7,8 +7,8 @@ const {
 
 const createImageController = async (req, res) => {
   try {
-    const { descripcion, imagen } = req.body;
-    const image = await createImage(descripcion, imagen);
+    const { descripcion, imagen, membership_id } = req.body;
+    const image = await createImage(descripcion, imagen, membership_id);
     res.status(201).json(image);
   } catch (error) {
     res.status(500).json({ message: error.message });
