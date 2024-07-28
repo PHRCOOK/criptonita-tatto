@@ -1,4 +1,3 @@
-// src/scripts/initDatabase.js
 require("dotenv").config(); // Load environment variables from .env file
 
 const { Client } = require("pg");
@@ -41,6 +40,28 @@ async function createTableIfNotExists() {
     `);
 
     console.log("Memberships table created or already exists.");
+
+    // Create images table
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS images (
+        id SERIAL PRIMARY KEY,
+        descripcion TEXT,
+        imagen VARCHAR(255)
+      );
+    `);
+
+    console.log("Images table created or already exists.");
+
+    // Create videos table
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS videos (
+        id SERIAL PRIMARY KEY,
+        descripcion TEXT,
+        video VARCHAR(255)
+      );
+    `);
+
+    console.log("Videos table created or already exists.");
   } catch (error) {
     console.error(
       "Error connecting to the database or creating the tables:",

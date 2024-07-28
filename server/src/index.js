@@ -5,11 +5,15 @@ const express = require("express");
 const app = express();
 const userRoute = require("./routes/UserRoute.js");
 const membershipRoute = require("./routes/MembershipRoute.js");
+const imageRoute = require("./routes/ImageRoute.js");
+const videoRoute = require("./routes/VideoRoute.js");
 const createTableIfNotExists = require("./scripts/initDatabase");
 
 app.use(express.json());
 app.use("/api", userRoute);
 app.use("/api", membershipRoute);
+app.use("/api", imageRoute);
+app.use("/api", videoRoute);
 
 // Llamada a la función para crear la tabla si no existe
 createTableIfNotExists().then(() => {
